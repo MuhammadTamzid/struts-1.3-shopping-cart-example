@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+    <form-beans>
+        <form-bean name="helloWorldForm" type="com.cart.form.HelloWorldForm" />
+
+        <form-bean name="categoryForm" type="com.cart.form.CategoryForm" />
+
+        <form-bean name="testForm" type="com.cart.form.TestForm" />
+    </form-beans>
+
+    <action-mappings>
+        <action path="/hello" type="com.cart.action.HelloWorldAction" name="helloWorldForm">
+            <forward name="success" path="/hello.jsp" />
+        </action>
+
+        <action
+                path="/a"
+                type="org.apache.struts.actions.ForwardAction"
+                parameter="/test.jsp"/>
+
+        <action
+                path="/category_a"
+                type="org.apache.struts.actions.ForwardAction"
+                parameter="/jsp/category/category.jsp"/>
+
+        <action
+                path="/category"
+                type="com.cart.action.CategoryAction"
+                name="categoryForm"
+                validate="true"
+                input="/jsp/category/category.jsp">
+
+            <forward name="success" path="/hello.jsp" />
+        </action>
+
+        <action path="/test" type="com.cart.action.TestAction" name="testForm">
+            <forward name="success" path="/test.jsp" />
+        </action>
+    </action-mappings>
+
+    <message-resources parameter="com.cart.properties.category" />
+</struts-config>
